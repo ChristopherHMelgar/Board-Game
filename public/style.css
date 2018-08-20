@@ -1,0 +1,34 @@
+.btn-Assassin,
+.btn-Assassin:hover,
+.btn-Assassin:active {
+   background: green;
+   border-color: green;
+}
+
+.btn-Berserk,
+.btn-Berserk:hover,
+.btn-Berserk:active {
+   background: red;
+   border-color: red;
+}
+
+.btn-Magician,
+.btn-Magicia:hover,
+.btn-Magicia:active {
+   background: blue;
+   border-color: blue;
+}
+
+.btn-Paladin,
+.btn-Paladin:hover,
+.btn-Paladin:active {
+   background: pink;
+   border-color: pink;
+}
+
+.btn-WebSamurai,
+.btn-WebSamurai:hover,
+.btn-WebSamurai:active {
+   background:orange;
+   border-color: orange;
+}

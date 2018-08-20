@@ -1,0 +1,15 @@
+{
+  "name": "Board Game",
+  "version": "1.0.0",
+  "description": "Boar Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.18.3"
+  }
+}

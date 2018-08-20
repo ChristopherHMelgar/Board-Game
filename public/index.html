@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
+      <title>BetaGame</title>
+      <script src="client.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <h1 class="text-center">Beta Game</h1>
+      </div>
+      <div class="container">
+         <div class="container p-3">
+            <button class="btn btn-primary btn-lg b" onclick="rollCharacters()">Roll</button>
+         </div>
+         <div class="container">
+            <ul class="list-group">
+               <li class="list-group-item active">
+                  <div class="row">
+                     <span class="col-sm">Class</span>
+                     <span class="col-sm">Health</span>
+                     <span class="col-sm">Movement</span>
+                  </div>
+               </li>
+            </ul>
+            <ul id="turnAction" class="list-group"></ul>
+         </div>
+      </div>
+      <div class="container">
+         <h3 class="text-center">Decks</h3>
+         <div class="row">
+            <div class="col-sm">
+               <div class="container p-3">
+                  <button class="btn-Assassin btn-primary btn-lg b" id="deckAssassin" onclick="draw(this)">Draw</button>
+                  <ul id="deckAssassinCards"></ul>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div class="container p-3">
+                  <button class="btn-Berserk btn-primary btn-lg b" id="deckBerserk" onclick="draw(this)">Draw</button>
+                  <ul id="deckBerserkCards"></ul>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div class="container p-3">
+                  <button class="btn-Magician btn-primary btn-lg b" id="deckMagician" onclick="draw(this)">Draw</button>
+                  <ul id="deckMagicianCards"></ul>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div class="container p-3">
+                  <button class="btn-Paladin btn-primary btn-lg b" id="deckPaladin" onclick="draw(this)">Draw</button>
+                  <ul id="deckPaladinCards"></ul>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div class="container p-3">
+                  <button class="btn-WebSamurai btn-primary btn-lg b" id="deckWebSamurai" onclick="draw(this)">Draw</button>
+                  <ul id="deckWebSamuraiCards"></ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
