@@ -30,9 +30,8 @@ const shuffle = function(deck) {
 }
 
 const draw = function(deck) {
-
    const cards = document.getElementById(deck.id + "Cards");
-   while (cards.firstChild) {
+   while (cards.firstChild) { //limpia la mano cada vez que se roba
       cards.removeChild(cards.firstChild);
    }
    let discardPile = getDiscardPile(deck.id),
@@ -44,9 +43,11 @@ const draw = function(deck) {
    if(len >= 4) {
       showCards(shuffleDeck, deckReference, discardPile, cards);
    } else {
-      const restoreDeck = shuffle(discardPile);
+      const restoreDeck = shuffle(discardPile).slice();
+      discardPile.length = 0;
       restoreDeck.forEach(element => {
          shuffleDeck.push(element);
+         deckReference.push(element);
       });
       showCards(shuffleDeck, deckReference, discardPile, cards);
    }
@@ -58,7 +59,7 @@ const showCards = function(shuffleDeck, deckReference, discardPile, cards){
          atributeLi = document.createAttribute('class');
       atributeLi.value = 'list-group-item';
       li.setAttributeNode(atributeLi);
-      li.innerHTML = shuffleDeck[i].id + " " + shuffleDeck[i].name;
+      li.innerHTML = `<b>${shuffleDeck[i].name}</b> <br> ${shuffleDeck[i].effect}`;
       cards.appendChild(li);
       discardPile.push(shuffleDeck[i]);
       deckReference.shift();
@@ -165,10 +166,34 @@ const enemies = [
       "movement": 6
    },
    {
+      "class": "Bones",
+      "health": 35,
+      "initiative": 7,
+      "movement": 6
+   },
+   {
       "class": "Brawler",
       "health": 40,
       "initiative": 6,
       "movement": 4
+   },
+   {
+      "class": "Brawler",
+      "health": 40,
+      "initiative": 6,
+      "movement": 4
+   },
+   {
+      "class": "Wolfs",
+      "health": 35,
+      "initiative": 7,
+      "movement": 6
+   },
+   {
+      "class": "Wolfs",
+      "health": 35,
+      "initiative": 7,
+      "movement": 6
    },
    {
       "class": "Wolfs",
@@ -182,57 +207,57 @@ const enemies = [
 const deckAssassin = [
    {
       "id": 0,
-      "name": "Basic Attack_1",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 1,
-      "name": "Basic Attack_2",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 2,
-      "name": "Sword Dance_1",
+      "name": "Sword Dance",
       "hurt": 0,
-      "effect": "ganan 1 de movimiento y roba una carta."
+      "effect": "Ganan 1 de movimiento y roba una carta."
    },
    {
       "id": 3,
-      "name": "Sword Dance_2",
+      "name": "Sword Dance",
       "hurt": 0,
-      "effect": "ganan 1 de movimiento y roba una carta."
+      "effect": "Ganan 1 de movimiento y roba una carta."
    },
    {
       "id": 4,
-      "name": "Sword Dance_3",
+      "name": "Sword Dance",
       "hurt": 0,
-      "effect": "ganan 1 de movimiento y roba una carta."
+      "effect": "Ganan 1 de movimiento y roba una carta."
    },
    {
       "id": 5,
       "name": "Stab",
       "hurt": 6,
-      "effect": "muevete hasta 2 espacios, haz 6 de daño de corte, muevete hasta 2 espacios."
+      "effect": "Muevete hasta 2 espacios, haz 6 de daño de corte, muevete hasta 2 espacios."
    },
    {
       "id": 6,
       "name": "Final Strike",
       "hurt": 6,
-      "effect": "6 de daño por cada carta jugada este turno. Tu turno termina inmediatamente."
+      "effect": "Hace 6 de daño por cada carta jugada este turno. Tu turno termina inmediatamente."
    },
    {
       "id": 7,
       "name": "ThrowKnife",
       "hurt": 5,
-      "effect": "5 de daño a un personaje a 3 espacios de distancia, si esta stuneado, 5 mas."
+      "effect": "Hace 5 de daño a un personaje a 3 espacios de distancia, si esta stuneado, 5 mas."
    },
    {
       "id": 8,
       "name": "Run Forest",
       "hurt": 0,
-      "effect": "recupera todos tus puntos de movimiento"
+      "effect": "Recupera todos tus puntos de movimiento"
    }
 ]
 const discardPileAssassin = [];
@@ -240,59 +265,59 @@ const discardPileAssassin = [];
 const deckBerserk = [
    {
       "id": 0,
-      "name": "basicAtack_1",
+      "name": "Basic Attack",
       "hurt": 5,
-      "efecct": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 1,
-      "name": "basicAtack_2",
+      "name": "Basic Attack",
       "hurt": 5,
-      "efecct": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 2,
-      "name": "basicAtack_3",
+      "name": "Basic Attack",
       "hurt": 5,
-      "efecct": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 3,
-      "name": "basicAtack_4",
+      "name": "Basic Attack",
       "hurt": 5,
-      "efecct": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 4,
-      "name": "basicAtack_5",
+      "name": "Basic Attack",
       "hurt": 5,
-      "efecct": "hace 5 de daño"
+      "effect": "Hace 5 de daño"
    },
    {
       "id": 5,
-      "name": "battle cry",
+      "name": "Battle Cry",
       "hurt": 0,
-      "effect": "Descarta todos los miedos de tu mano y mazo. Gana 50% de daño y dos de movimiento. " +
+      "effect": "Descarta todos los miedos de tu mano y mazo. Gana 50% de daño y dos de movimiento. "
          + "Los aliados a 3 de distancia o menos tienen 30% de probabilidad de recibir un miedo. Baraja en tu mazo un exhausto."
    },
    {
       "id": 6,
-      "name": "inmortal",
+      "name": "Inmortal",
       "hurt": 0,
-      "effect": "Tu HP no pude bajar a menos de 1 hasta el comienzo de tu proximo turno. " +
+      "effect": "Tu HP no pude bajar a menos de 1 hasta el comienzo de tu proximo turno. "
         + " Gana 25% de daño en tu proximo turno, 100% al comienzo del mismo si tu hp es 5 o menos. Pon 2 exhausto en tu descarte."
    },
    {
       "id": 7,
-      "name": "me stronk",
+      "name": "Me stronk",
       "hurt": 6,
       "effect": "Solo puedes usar esta carta si es la primera en tu turno, muevete a uno de los enemigos mas cercano usando todos tus movimientos y haces 6 de daño de embote."
    },
    {
       "id": 8,
-      "name": "spin to win",
+      "name": "Spin to Win",
       "hurt": 4,
-      "effect": "4 de daño a todos los personajes adyacentes."
+      "effect": "Hace 4 de daño a todos los personajes adyacentes."
    }
 ]
 const discardPileBerserk = [];
@@ -300,37 +325,37 @@ const discardPileBerserk = [];
 const deckMagician = [
    {
       "id": 0,
-      "name": "healing_1",
+      "name": "Healing",
       "hurt": 7,
       "effect": "Cura 7 un aliado a 4 de distancia."
    },
    {
       "id": 1,
-      "name": "healing_2",
+      "name": "Healing",
       "hurt": 7,
       "effect": "Cura 7 un aliado a 4 de distancia."
    },
    {
       "id": 2,
-      "name" : "healing_3",
+      "name" : "Healing",
       "hurt": 7,
       "effect": "Cura 7 un aliado a 4 de distancia."
    },
    {
       "id": 3,
-      "name": "fireball",
+      "name": "Fireball",
       "hurt": 8,
-      "effect": "8 de daño a un caracter a 4 de distancia. Luego 4 a todos los caracteres alrededor."
+      "effect": "Hace 8 de daño a un caracter a 4 de distancia. Luego 4 a todos los caracteres alrededor."
    },
    {
       "id": 4,
-      "name": "calm",
+      "name": "Calm",
       "hurt": 0,
       "effect": "Remueve hasta 2 miedos del mazo o poso de descarte de un aliado."
    },
    {
       "id": 5,
-      "name": "maxHealing",
+      "name": "Max Healing",
       "hurt": 12,
       "effect": "Cura 12 a un personaje a 4 de distancia. Cura todas sus condiciones."
    },
@@ -338,14 +363,14 @@ const deckMagician = [
       "id": 6,
       "name": "Thunderbolt",
       "hurt": 4,
-      "effect": "4 de daño a un enemigo a 4 de distancia. Luego 3 de daño a un enemigo diferente a 3 de distancia del anterior. " +
+      "effect": "Hace 4 de daño a un enemigo a 4 de distancia. Luego 3 de daño a un enemigo diferente a 3 de distancia del anterior. "
          + "Luego 3 de daño a un enemigo diferente a los dos anteriores"
    },
   {
       "id": 7,
-      "name": "wind",
+      "name": "Wind",
       "hurt": 5,
-      "effect": "Aumenta la iniciativa de todos los aliados en 2. Aumenta los movimientos de todos los aliados en 2. " +
+      "effect": "Aumenta la iniciativa de todos los aliados en 2. Aumenta los movimientos de todos los aliados en 2. "
          + "Los aliados pueden moverse un espacio al final de su turno. Persiste hasta que causes daño."
    }
 ]
@@ -354,33 +379,33 @@ const discardPileMagician = [];
 const deckPaladin = [
    {
       "id": 0,
-      "name": "basicAtack_1",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "5 de daño a un enemigo adyacente."
+      "effect": "Hace 5 de daño a un enemigo adyacente."
    },
    {
       "id": 1,
-      "name": "basicAtack_2",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "5 de daño a un enemigo adyacente."
+      "effect": "Hace 5 de daño a un enemigo adyacente."
    },
    {
       "id": 2,
-      "name": "basicAtack_3",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "5 de daño a un enemigo adyacente."
+      "effect": "Hace 5 de daño a un enemigo adyacente."
    },
    {
       "id": 3,
-      "name": "basicAtack_4",
+      "name": "Basic Attack",
       "hurt": 5,
-      "effect": "5 de daño a un enemigo adyacente."
+      "effect": "Hace 5 de daño a un enemigo adyacente."
    },
    {
       "id": 4,
       "name": "Shield Smash",
       "hurt": 12,
-      "effect": "Muevete hasta 4 espacios y haces 12 de daño a un enemigo adyacente y empujalo a 1 de distancia. Si la distancia recorrida es 0 lo+ stuneas."
+      "effect": "Muevete hasta 4 espacios y haces 12 de daño a un enemigo adyacente y empujalo a 1 de distancia. Si la distancia recorrida es 0 lo stuneas."
    },
    {
       "id": 5,
@@ -412,25 +437,25 @@ const discardPilePaladin = [];
 const deckWebSamurai = [
    {
       "id": 0,
-      "name": "basicAtack_1",
+      "name": "Basic Attack",
       "hurt": 4,
       "effect": "Hace 4 de daño si tu espada esta desenfundada."
    },
    {
       "id": 1,
-      "name": "basicAtack_2",
+      "name": "Basic Attack",
       "hurt": 4,
       "effect": "Hace 4 de daño si tu espada esta desenfundada."
    },
    {
       "id": 2,
-      "name": "basicAtack_3",
+      "name": "Basic Attack",
       "hurt": 4,
       "effect": "Hace 4 de daño si tu espada esta desenfundada."
    },
    {
       "id": 3,
-      "name": "basicAtack_4",
+      "name": "Basic Attack",
       "hurt": 4,
       "effect": "Hace 4 de daño si tu espada esta desenfundada."
    },
@@ -454,13 +479,13 @@ const deckWebSamurai = [
    },
   {
       "id": 7,
-      "name": "Serenity_1",
+      "name": "Serenity",
       "hurt": 0,
       "effect": "Solo puedes usarla con tu espada desenfundada. Enfunda tu espada y remueve todos los miedos de tu mano."
    },
    {
       "id": 8,
-      "name": "Serenity_2",
+      "name": "Serenity",
       "hurt": 0,
       "effect": "Solo puedes usarla con tu espada desenfundada. Enfunda tu espada y remueve todos los miedos de tu mano."
     }

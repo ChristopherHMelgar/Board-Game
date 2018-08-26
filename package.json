@@ -1,7 +1,7 @@
 {
-  "name": "Board Game",
+  "name": "boardGame",
   "version": "1.0.0",
-  "description": "Boar Game",
+  "description": "Board Game",
   "main": "index.js",
   "scripts": {
     "start": "node ./server/main.js"
